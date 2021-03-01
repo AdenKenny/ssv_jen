@@ -1,0 +1,6 @@
+{
+    "isActive": {{ bool() }},
+    "atTime": "{{ timestamp() | date(format="%Y-%m-%d %H:%M:%S") }}",
+    "balance": {{ float(start=1000, end=4000) | round(precision=2) }},
+    "email": "{{ email() }}"
+}
