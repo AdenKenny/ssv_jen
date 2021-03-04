@@ -77,14 +77,14 @@ fn write_vec_to_file(output: Vec<String>, f: &File) {
 fn generate_data(number_of_rows: usize, template_path: String, header_vec: Vec<String>) -> Vec<String> {
     let gen = Generator::new(template_path).expect("provided a value template");
 
-    let taken: Vec<String> = gen.take(number_of_rows).collect();
+    let taken = gen.take(number_of_rows);
 
-    let output_data: Vec<String> = taken.iter().map(|raw_json| {
-        let v: Value = serde_json::from_str(raw_json).unwrap();
+    let output_data: Vec<String> = taken.map(|raw_json| {
+        let v: Value = serde_json::from_str(&raw_json).unwrap();
         let mut data: String = "".to_owned();
         
         for header in &header_vec {
-            if data.len() == 0 {
+            if data.is_empty() {
                 data = v[header].to_string();
             }
 
@@ -95,8 +95,7 @@ fn generate_data(number_of_rows: usize, template_path: String, header_vec: Vec<S
         
         data.pop();
 
-        let cleaned_data = (data + "\n").replace("\"", "");
-        cleaned_data
+        (data + "\n").replace("\"", "")
     }).collect();
 
     output_data
