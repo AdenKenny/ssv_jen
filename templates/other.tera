@@ -1,6 +1,7 @@
 {
-    "isActive": {{ bool() }},
-    "atTime": "{{ timestamp() | date(format="%Y-%m-%d %H:%M:%S") }}",
-    "balance": {{ float(start=1000, end=4000) | round(precision=2) }},
-    "email": "{{ email() }}"
+    "name": "{{ name() }}",
+    "dateOfEntry": "{{ timestamp() | date(format="%Y-%m-%d %H:%M:%S") }}",
+    "balance": {{ float(start=-50000, end=100000) | round(precision=2) }},
+    "email": "{{ email() }}",
+    "latitude": {{ latitude() }}
 }
