@@ -25,4 +25,5 @@ FLAGS:
     -r, --rows       The number of rows to generate
     -t, --template   The template file which the structure is derived from
     -f, --file       The file where the csv will be saved to
+    -c, --threads    The number of threads to generate data with
 ```
